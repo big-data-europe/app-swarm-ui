@@ -1,5 +1,26 @@
 (in-package :mu-cl-resources)
 
+(define-resource repository ()
+  :class (s-prefix "doap:GitRepository")
+  :properties `((:location :string ,(s-prefix "doap:location"))
+                (:title :string ,(s-prefix "dct:title"))
+                (:icon :string ,(s-prefix "w3vocab:icon"))
+                (:mdl-icon :string ,(s-prefix "ext:mdlIcon")))
+  :has-many `((pipeline-instance :via ,(s-prefix "swarmui:pipelines")
+                                 :as "pipeline-instances"))
+  :resource-base (s-url "http://swarm-ui.big-data-europe.eu/resources/repositories/")
+  :on-path "repositories")
+
+(define-resource pipeline-instance ()
+  :class (s-prefix "swarmui:Pipeline")
+  :properties `((:title :string ,(s-prefix "dct:title"))
+                (:icon :string ,(s-prefix "w3vocab:icon"))
+                (:mdl-icon :string ,(s-prefix "ext:mdlIcon")))
+  :has-one `((repository :via ,(s-prefix "swarmui:instances")
+                         :inverse t
+                         :as "repository"))
+  :resource-base (s-url "http://swarm-ui.big-data-europe.eu/resources/pipeline-instances/")
+  :on-path "pipeline-instances")
 ;;;;
 ;; NOTE
 ;; docker-compose stop; docker-compose rm; docker-compose up
