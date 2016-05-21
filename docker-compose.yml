@@ -27,3 +27,13 @@ services:
       - db:database
     volumes:
       - ./config/resources:/config
+  swarm:
+    image: cecton/mu-swarm-admin
+    environment:
+      ENV: "dev"
+    links:
+      - db:database
+    volumes:
+      - /run/:/run/
+      - ./data/repositories:/data
+
