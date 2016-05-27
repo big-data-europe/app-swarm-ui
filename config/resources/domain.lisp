@@ -16,11 +16,34 @@
   :properties `((:title :string ,(s-prefix "dct:title"))
                 (:icon :string ,(s-prefix "w3vocab:icon"))
                 (:mdl-icon :string ,(s-prefix "ext:mdlIcon")))
-  :has-one `((repository :via ,(s-prefix "swarmui:instances")
+  :has-one `((repository :via ,(s-prefix "swarmui:pipelines")
                          :inverse t
-                         :as "repository"))
+                         :as "repository")
+             (status :via ,(s-prefix "swarmui:status")
+                     :as "status"))
+  :has-many `((service :via ,(s-prefix "swarmui:services")
+                       :as "services"))
   :resource-base (s-url "http://swarm-ui.big-data-europe.eu/resources/pipeline-instances/")
   :on-path "pipeline-instances")
+
+(define-resource service ()
+  :class (s-prefix "swarmui:Service")
+  :properties `((:name :string ,(s-prefix "dct:title"))
+                (:scaling :number ,(s-prefix "swarmui:scaling")))
+  :has-one `((pipeline-instance :via ,(s-prefix "swarmui:services")
+                                :inverse t
+                                :as "pipeline-instance"))
+  :resource-base (s-url "http://swarm-ui.big-data-europe.eu/resources/services/")
+  :on-path "services")
+
+(define-resource status ()
+  :class (s-prefix "swarmui:Status")
+  :properties `((:title :string ,(s-prefix "dct:title")))
+  :has-many `((pipeline-instance :via ,(s-prefix "swarmui:status")
+                                 :inverse t
+                                 :as "pipeline-instances"))
+  :resource-base (s-url "http://swarm-ui.big-data-europe.eu/resources/statuses/")
+  :on-path "statuses")
 ;;;;
 ;; NOTE
 ;; docker-compose stop; docker-compose rm; docker-compose up

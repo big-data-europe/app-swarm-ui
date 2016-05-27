@@ -30,6 +30,14 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://resource/pipeline-instances/"
   end
 
+  match "/services/*path" do
+    Proxy.forward conn, path, "http://resource/services/"
+  end
+
+  match "/statuses/*path" do
+    Proxy.forward conn, path, "http://resource/statuses/"
+  end
+
   match "/swarm/*path" do
     Proxy.forward conn, path, "http://swarm/"
   end

@@ -5,7 +5,7 @@ services:
     links:
       - dispatcher:dispatcher
     ports:
-      - "80:80"
+      - "88:80"
   dispatcher:
     image: semtech/mu-dispatcher:1.0.1
     links:
@@ -18,7 +18,7 @@ services:
       SPARQL_UPDATE: "true"
       DEFAULT_GRAPH: "http://mu.semte.ch/application"
     ports:
-      - "8890:8890"
+      - "8898:8890"
     volumes:
       - ./data/db:/data
   resource:
@@ -35,5 +35,5 @@ services:
       - db:database
     volumes:
       - /run/:/run/
-      - ./data/repositories:/data
+      - /data/:/data/
 
