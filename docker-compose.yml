@@ -1,11 +1,15 @@
 version: "2"
 services:
+  frontend:
+    image: bde2020/ember-swarm-ui-frontend:0.1.0
+    ports:
+      - "88:80"
+    links:
+      - identifier:backend
   identifier:
     image: semtech/mu-identifier:1.0.0
     links:
       - dispatcher:dispatcher
-    ports:
-      - "88:80"
   dispatcher:
     image: semtech/mu-dispatcher:1.0.1
     links:
@@ -28,7 +32,7 @@ services:
     volumes:
       - ./config/resources:/config
   swarm:
-    image: cecton/mu-swarm-admin
+    image: bde2020/mu-swarm-admin-service
     environment:
       ENV: "dev"
     links:
