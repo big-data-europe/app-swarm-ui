@@ -1,7 +1,7 @@
 version: "2"
 services:
   frontend:
-    image: bde2020/ember-swarm-ui-frontend:0.2.1
+    image: bde2020/ember-swarm-ui-frontend:0.2.2
     ports:
       - "88:80"
     links:
