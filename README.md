@@ -2,6 +2,8 @@
 
 Friendly web interface for swarm with access control
 
+*NOTE: use of SwarmUI on a multi-node Swarm cluster requires shared volumes, like NFS.  Specific  documentation on setting this up will follow in the coming weeks.*
+
 ## How to
 
 Clone this project, and launch docker-compose yaml.
