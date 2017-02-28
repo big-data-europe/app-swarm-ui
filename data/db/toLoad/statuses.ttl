@@ -14,3 +14,6 @@
 <http://swarmui.semte.ch/vocabularies/core/Starting> dct:title "starting";
     <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://swarmui.semte.ch/vocabularies/core/Status>;
     mu:uuid "571E00F8-21C4-11E6-8661-707448CF8D56".
+<http://swarmui.semte.ch/vocabularies/core/Down> dct:title "down";
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://swarmui.semte.ch/vocabularies/core/Status>;
+    mu:uuid "D5CA40B4-5AC3-47F0-8761-D2AB5B057984".
