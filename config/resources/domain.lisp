@@ -20,7 +20,9 @@
                          :inverse t
                          :as "repository")
              (status :via ,(s-prefix "swarmui:status")
-                     :as "status"))
+                     :as "status")
+             (status :via ,(s-prefix "swarmui:requestedStatus")
+                     :as "requested-status"))
   :has-many `((service :via ,(s-prefix "swarmui:services")
                        :as "services"))
   :resource-base (s-url "http://swarm-ui.big-data-europe.eu/resources/pipeline-instances/")
