@@ -13,8 +13,7 @@
 (define-resource pipeline-instance ()
   :class (s-prefix "swarmui:Pipeline")
   :properties `((:title :string ,(s-prefix "dct:title"))
-                (:icon :string ,(s-prefix "w3vocab:icon"))
-                (:mdl-icon :string ,(s-prefix "ext:mdlIcon")))
+                (:icon :string ,(s-prefix "w3vocab:icon")))
   :has-one `((repository :via ,(s-prefix "swarmui:pipelines")
                          :inverse t
                          :as "repository")
