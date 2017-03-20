@@ -13,7 +13,8 @@
 (define-resource pipeline-instance ()
   :class (s-prefix "swarmui:Pipeline")
   :properties `((:title :string ,(s-prefix "dct:title"))
-                (:icon :string ,(s-prefix "w3vocab:icon")))
+                (:icon :string ,(s-prefix "w3vocab:icon"))
+                (:restart-requested :string ,(s-prefix "swarmui:restartRequested")))
   :has-one `((repository :via ,(s-prefix "swarmui:pipelines")
                          :inverse t
                          :as "repository")
@@ -29,7 +30,8 @@
 (define-resource service ()
   :class (s-prefix "swarmui:Service")
   :properties `((:name :string ,(s-prefix "dct:title"))
-                (:scaling :number ,(s-prefix "swarmui:scaling")))
+                (:scaling :number ,(s-prefix "swarmui:scaling"))
+                (:restart-requested :string ,(s-prefix "swarmui:restartRequested")))
   :has-one `((pipeline-instance :via ,(s-prefix "swarmui:services")
                                 :inverse t
                                 :as "pipeline-instance"))
