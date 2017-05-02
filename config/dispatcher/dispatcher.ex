@@ -39,7 +39,7 @@ defmodule Dispatcher do
   end
 
   match "/swarm/*path" do
-    Proxy.forward conn, path, "http://swarm/"
+    Proxy.forward conn, path, "http://swarm-admin/"
   end
 
   match _ do
