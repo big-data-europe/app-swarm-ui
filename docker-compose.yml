@@ -7,6 +7,8 @@ services:
       - "88:80"
     links:
       - identifier:backend
+    volumes:
+      - ./config/frontend:/etc/nginx/conf.d
 
   identifier:
     image: semtech/mu-identifier:1.0.0
