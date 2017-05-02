@@ -32,10 +32,21 @@ services:
       - ./data/db:/data
       - ./config/toLoad:/data/toLoad
 
+  delta:
+    image: semtech/mu-delta-service:beta-0.9
+    links:
+      - db:database
+      - swarm-admin:swarm-admin
+    environment:
+      - CONFIGFILE=/config/config.properties
+      - SUBSCRIBERSFILE=/config/subscribers.json
+    volumes:
+      - ./config/delta:/config
+
   resource:
     image: semtech/mu-cl-resources:1.11.0
     links:
-      - db:database
+      - delta:database
     volumes:
       - ./config/resources:/config
 
