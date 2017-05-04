@@ -51,7 +51,7 @@ services:
       - ./config/resources:/config
 
   swarm-admin:
-    image: bde2020/mu-swarm-admin-service
+    image: bde2020/mu-swarm-admin-service:0.2.0
     environment:
       - DOCKER_HOST=tcp://docker:2375
     links:
