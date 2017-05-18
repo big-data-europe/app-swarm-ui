@@ -14,12 +14,12 @@ services:
     image: semtech/mu-identifier:1.0.0
     links:
       - dispatcher:dispatcher
-      - swarm-admin:swarm-admin
 
   dispatcher:
     image: semtech/mu-dispatcher:1.0.1
     links:
       - resource:resource
+      - swarm-admin:swarm-admin
     volumes:
       - ./config/dispatcher:/config
 
