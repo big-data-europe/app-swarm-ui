@@ -34,7 +34,11 @@
                 (:restart-requested :string ,(s-prefix "swarmui:restartRequested")))
   :has-one `((pipeline-instance :via ,(s-prefix "swarmui:services")
                                 :inverse t
-                                :as "pipeline-instance"))
+                                :as "pipeline-instance")
+             (status :via ,(s-prefix "swarmui:status")
+                     :as "status")
+             (status :via ,(s-prefix "swarmui:requestedStatus")
+                     :as "requested-status"))
   :resource-base (s-url "http://swarm-ui.big-data-europe.eu/resources/services/")
   :on-path "services")
 
