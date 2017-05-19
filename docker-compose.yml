@@ -44,7 +44,7 @@ services:
       - ./config/delta:/config
 
   resource:
-    image: semtech/mu-cl-resources:1.11.0
+    image: semtech/mu-cl-resources:1.15.0
     links:
       - delta:database
     volumes:
