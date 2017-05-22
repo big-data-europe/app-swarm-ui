@@ -24,7 +24,7 @@ services:
       - ./config/dispatcher:/config
 
   db:
-    image: tenforce/virtuoso:1.1.1-virtuoso7.2.2
+    image: tenforce/virtuoso:1.2.0-virtuoso7.2.2
     environment:
       SPARQL_UPDATE: "true"
       DEFAULT_GRAPH: "http://mu.semte.ch/application"
