@@ -52,16 +52,7 @@ services:
 
   swarm-admin:
     image: bde2020/mu-swarm-admin-service:0.3.0
-    environment:
-      - DOCKER_HOST=tcp://docker:2375
     links:
       - db:database
-      - docker:docker
     volumes:
       - ./data/swarm-admin:/data
-
-  docker:
-    image: docker:dind
-    privileged: true
-    volumes:
-      - ./data/docker:/var/lib/docker

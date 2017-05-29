@@ -1,11 +1,26 @@
 version: "2"
 services:
+
   dispatcher:
     ports:
       - "444:80"
+
   db:
     ports:
       - "8890:8890"
+
   resource:
     ports:
       - "555:80"
+
+  swarm-admin:
+    environment:
+      - DOCKER_HOST=tcp://docker:2375
+    links:
+      - docker:docker
+
+  docker:
+    image: docker:dind
+    privileged: true
+    volumes:
+      - ./data/docker:/var/lib/docker
