@@ -56,3 +56,8 @@ services:
       - db:database
     volumes:
       - ./data/swarm-admin:/data
+
+  proxy:
+    image: bde2020/nginx-proxy-with-css
+    ports:
+      - "80:80"
