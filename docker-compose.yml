@@ -51,7 +51,7 @@ services:
       - ./config/resources:/config
 
   swarm-admin:
-    image: bde2020/mu-swarm-admin-service:0.3.0
+    image: bde2020/mu-swarm-admin-service:0.4.0
     links:
       - db:database
     volumes:
@@ -61,3 +61,7 @@ services:
     image: bde2020/nginx-proxy-with-css
     ports:
       - "80:80"
+
+networks:
+  default:
+    driver: overlay

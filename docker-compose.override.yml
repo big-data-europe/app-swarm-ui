@@ -14,13 +14,9 @@ services:
       - "555:80"
 
   swarm-admin:
-    environment:
-      - DOCKER_HOST=tcp://docker:2375
-    links:
-      - docker:docker
-
-  docker:
-    image: docker:dind
-    privileged: true
     volumes:
-      - ./data/docker:/var/lib/docker
+      - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+  default:
+    driver: bridge
