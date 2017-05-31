@@ -2,7 +2,7 @@
 
 Friendly web interface for swarm with access control
 
-*NOTE: use of SwarmUI on a multi-node Swarm cluster requires shared volumes, like NFS.  Specific  documentation on setting this up will follow in the coming weeks.*
+*NOTE: use of SwarmUI on a multi-node Swarm cluster requires shared volumes, like NFS.  Specific  documentation on setting this up can be found at https://github.com/big-data-europe/README/wiki/Setting-up-shared-NFS-volume-with-Convoy.*
 
 ## How to
 
