@@ -58,7 +58,7 @@ services:
       - ./data/swarm-admin:/data
 
   proxy:
-    image: bde2020/nginx-proxy-with-css
+    image: bde2020/mu-swarm-admin-proxy:latest
     ports:
       - "80:80"
 
