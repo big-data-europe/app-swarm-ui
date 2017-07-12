@@ -51,7 +51,7 @@ services:
       - ./config/resources:/config
 
   swarm-admin:
-    image: bde2020/mu-swarm-admin-service:0.5.0
+    image: bde2020/mu-swarm-admin-service:latest
     links:
       - db:database
     volumes:
