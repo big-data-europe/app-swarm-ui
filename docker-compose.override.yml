@@ -17,6 +17,10 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
+  swarm-logger:
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
   proxy:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro

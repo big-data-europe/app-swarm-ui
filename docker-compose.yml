@@ -57,6 +57,13 @@ services:
     environment:
       - MU_SPARQL_ENDPOINT=http://delta:8890/sparql
 
+  swarm-logger:
+    image: bde2020/mu-swarm-logger-service:latest
+    links:
+      - db:database
+    volumes:
+      - ./data/swarm-admin:/data
+
   proxy:
     image: bde2020/mu-swarm-admin-proxy:latest
     ports:
