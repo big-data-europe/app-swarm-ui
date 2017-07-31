@@ -52,7 +52,7 @@ services:
       - ./config/resources:/config
 
   push-service:
-    build: ../mu-push-service
+    image: tenforce/mu-push-service
     environment:
       - MU_SPARQL_ENDPOINT=http://delta:8890/sparql
       - MU_CL_RESOURCES_ENDPOINT=http://resource
