@@ -2,7 +2,7 @@ version: "2"
 services:
 
   frontend:
-    image: bde2020/ember-swarm-ui-frontend:0.5.0
+    image: bde2020/ember-swarm-ui-frontend:0.6.0
     ports:
       - "88:80"
     links:
@@ -11,7 +11,7 @@ services:
       - ./config/frontend:/etc/nginx/conf.d
 
   identifier:
-    image: semtech/mu-identifier:1.0.0
+    image: semtech/mu-identifier:latest
     links:
       - dispatcher:dispatcher
 
@@ -20,6 +20,7 @@ services:
     links:
       - resource:resource
       - swarm-admin:swarm-admin
+      - push-service:push-service
     volumes:
       - ./config/dispatcher:/config
 
@@ -49,6 +50,19 @@ services:
       - delta:database
     volumes:
       - ./config/resources:/config
+
+  push-service:
+    image: tenforce/mu-push-service
+    environment:
+      - MU_SPARQL_ENDPOINT=http://delta:8890/sparql
+      - MU_CL_RESOURCES_ENDPOINT=http://resource
+    volumes:
+      - ./config/resources:/config
+    links:
+      - delta:delta
+      - resource:resource
+    ports:
+      - "83:80"
 
   swarm-admin:
     image: bde2020/mu-swarm-admin-service:latest
