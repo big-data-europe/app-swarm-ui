@@ -37,7 +37,6 @@ services:
     image: semtech/mu-delta-service:beta-0.9
     links:
       - db:database
-      - swarm-admin:swarm-admin
     environment:
       - CONFIGFILE=/config/config.properties
       - SUBSCRIBERSFILE=/config/subscribers.json
@@ -66,6 +65,8 @@ services:
 
   swarm-admin:
     image: bde2020/mu-swarm-admin-service:latest
+    depends_on:
+      - delta
     volumes:
       - ./data/swarm-admin:/data
     environment:
