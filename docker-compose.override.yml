@@ -1,7 +1,7 @@
 version: "2"
 services:
 
-  dispatcher:
+  nginx-dispatcher:
     ports:
       - "444:80"
 
