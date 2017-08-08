@@ -34,7 +34,7 @@ services:
       - ./config/toLoad:/data/toLoad
 
   delta:
-    image: semtech/mu-delta-service:beta-0.9
+    image: semtech/mu-delta-service:latest
     links:
       - db:database
     environment:
