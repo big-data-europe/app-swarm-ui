@@ -1,6 +1,7 @@
 {
   "potentials":[
-    "http://swarm-admin/update"
+    "http://swarm-admin/update",
+    "http://push-service/update"
   ],
   "effectives":[
   ]

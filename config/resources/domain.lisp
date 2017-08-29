@@ -15,7 +15,8 @@
   :class (s-prefix "swarmui:Pipeline")
   :properties `((:title :string ,(s-prefix "dct:title"))
                 (:icon :string ,(s-prefix "w3vocab:icon"))
-                (:restart-requested :string ,(s-prefix "swarmui:restartRequested")))
+                (:restart-requested :string ,(s-prefix "swarmui:restartRequested"))
+                (:update-requested :string ,(s-prefix "swarmui:updateRequested")))
   :has-one `((repository :via ,(s-prefix "swarmui:pipelines")
                          :inverse t
                          :as "repository")

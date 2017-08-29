@@ -2,7 +2,7 @@ version: "2"
 services:
 
   frontend:
-    image: bde2020/ember-swarm-ui-frontend:0.5.0
+    image: bde2020/ember-swarm-ui-frontend:0.11.0
     ports:
       - "88:80"
     links:
@@ -11,7 +11,7 @@ services:
       - ./config/frontend:/etc/nginx/conf.d
 
   identifier:
-    image: semtech/mu-identifier:1.0.0
+    image: semtech/mu-identifier:latest
     links:
       - dispatcher:dispatcher
 
@@ -20,6 +20,7 @@ services:
     links:
       - resource:resource
       - swarm-admin:swarm-admin
+      - push-service:push-service
     volumes:
       - ./config/dispatcher:/config
 
@@ -33,10 +34,9 @@ services:
       - ./config/toLoad:/data/toLoad
 
   delta:
-    image: semtech/mu-delta-service:beta-0.9
+    image: semtech/mu-delta-service:latest
     links:
       - db:database
-      - swarm-admin:swarm-admin
     environment:
       - CONFIGFILE=/config/config.properties
       - SUBSCRIBERSFILE=/config/subscribers.json
@@ -50,15 +50,37 @@ services:
     volumes:
       - ./config/resources:/config
 
+  push-service:
+    image: tenforce/push-service
+    environment:
+      - MU_SPARQL_ENDPOINT=http://delta:8890/sparql
+      - MU_CL_RESOURCES_ENDPOINT=http://resource
+    volumes:
+      - ./config/resources:/config
+    links:
+      - delta:delta
+      - resource:resource
+    ports:
+      - "83:80"
+
   swarm-admin:
-    image: bde2020/mu-swarm-admin-service:0.5.0
+    image: bde2020/mu-swarm-admin-service:latest
+    depends_on:
+      - delta
+    volumes:
+      - ./data/swarm-admin:/data
+    environment:
+      - MU_SPARQL_ENDPOINT=http://delta:8890/sparql
+
+  swarm-logger:
+    image: bde2020/mu-swarm-logger-service:latest
     links:
       - db:database
     volumes:
       - ./data/swarm-admin:/data
 
   proxy:
-    image: bde2020/nginx-proxy-with-css
+    image: bde2020/mu-swarm-admin-proxy:latest
     ports:
       - "80:80"
 
