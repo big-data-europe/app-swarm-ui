@@ -42,10 +42,6 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://swarm-admin/"
   end
 
-  match "/push-service/*path" do
-    Proxy.forward conn, path, "http://push-service/"
-  end
-
   match _ do
     send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )
   end
