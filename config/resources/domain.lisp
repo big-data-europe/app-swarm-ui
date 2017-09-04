@@ -20,6 +20,9 @@
   :has-one `((repository :via ,(s-prefix "swarmui:pipelines")
                          :inverse t
                          :as "repository")
+             (stack :via ,(s-prefix "swarmui:pipelines")
+                                    :inverse t
+                                    :as "stack")
              (status :via ,(s-prefix "swarmui:status")
                      :as "status")
              (status :via ,(s-prefix "swarmui:requestedStatus")
@@ -53,6 +56,28 @@
                                  :as "pipeline-instances"))
   :resource-base (s-url "http://swarm-ui.big-data-europe.eu/resources/statuses/")
   :on-path "statuses")
+;
+(define-resource docker-compose ()
+  :class (s-prefix "stackbuilder:DockerCompose")
+  :properties `((:text :string ,(s-prefix "stackbuilder:text"))
+                (:title :string ,(s-prefix "dct:title")))
+  :has-many `((stack :via ,(s-prefix "swarmui:dockerComposeFile")
+                                 :inverse t
+                                 :as "stacks"))
+  :resource-base (s-url "http://stack-builder.big-data-europe.eu/resources/docker-composes/")
+  :on-path "docker-composes")
+
+(define-resource stack ()
+  :class (s-prefix "doap:Stack")
+  :properties `((:title :string ,(s-prefix "dct:title"))
+                (:icon :string ,(s-prefix "w3vocab:icon")))
+  :has-many `((pipeline-instance :via ,(s-prefix "swarmui:pipelines")
+                                 :as "pipeline-instances"))
+  :has-one `((docker-compose :via ,(s-prefix "swarmui:dockerComposeFile")
+                                :as "docker-file"))
+  :resource-base (s-url "http://swarm-ui.big-data-europe.eu/resources/stacks/")
+  :on-path "stacks")
+  
 ;;;;
 ;; NOTE
 ;; docker-compose stop; docker-compose rm; docker-compose up
