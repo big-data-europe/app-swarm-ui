@@ -22,6 +22,14 @@ defmodule Dispatcher do
   #   Proxy.forward conn, path, "http://resource/themes/"
   # end
 
+  match "/docker-composes/*path" do
+    Proxy.forward conn, path, "http://resource/docker-composes/"
+  end
+
+  match "/stacks/*path" do
+    Proxy.forward conn, path, "http://resource/stacks/"
+  end
+
   match "/repositories/*path" do
     Proxy.forward conn, path, "http://resource/repositories/"
   end
@@ -40,10 +48,6 @@ defmodule Dispatcher do
 
   match "/swarm/*path" do
     Proxy.forward conn, path, "http://swarm-admin/"
-  end
-
-  match "/push-service/*path" do
-    Proxy.forward conn, path, "http://push-service/"
   end
 
   match _ do

@@ -11,7 +11,7 @@ services:
       - ./config/frontend:/etc/nginx/conf.d
 
   identifier:
-    image: semtech/mu-identifier:latest
+    image: semtech/mu-identifier:1.0.0
     links:
       - dispatcher:dispatcher
 
@@ -20,7 +20,6 @@ services:
     links:
       - resource:resource
       - swarm-admin:swarm-admin
-      - push-service:push-service
     volumes:
       - ./config/dispatcher:/config
 
@@ -49,19 +48,6 @@ services:
       - delta:database
     volumes:
       - ./config/resources:/config
-
-  push-service:
-    image: tenforce/push-service
-    environment:
-      - MU_SPARQL_ENDPOINT=http://delta:8890/sparql
-      - MU_CL_RESOURCES_ENDPOINT=http://resource
-    volumes:
-      - ./config/resources:/config
-    links:
-      - delta:delta
-      - resource:resource
-    ports:
-      - "83:80"
 
   swarm-admin:
     image: bde2020/mu-swarm-admin-service:latest
